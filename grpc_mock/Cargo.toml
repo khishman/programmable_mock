@@ -1,0 +1,42 @@
+[package]
+name = "grpc_mock"
+version = "0.1.0"
+authors = ["Zaid alkhishman <zaid.alkhishman@gmail.com>"]
+edition = "2018"
+publish = false
+license = "MIT"
+
+[[bin]]
+name = "grpcmock-server"
+path = "src/server.rs"
+
+[[bin]]
+name = "gm-client-test-basic"
+path = "src/client_test_basic.rs"
+
+[[bin]]
+name = "gm-client-test-both-stream"
+path = "src/client_test_both_stream.rs"
+
+[[bin]]
+name = "gm-client-test-serv-stream"
+path = "src/client_test_serv_stream.rs"
+
+[[bin]]
+name = "gm-client-test-client-stream"
+path = "src/client_test_client_stream.rs"
+
+[dependencies]
+tonic = "0.5"
+prost = "0.8"
+futures = "0.3"
+tokio = { version = "1.0", features = ["rt-multi-thread", "macros", "sync", "time"] }
+tokio-stream = "0.1"
+
+async-stream = "0.3"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+[build-dependencies]
+tonic-build = "0.5"
+

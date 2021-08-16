@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package grpcmock;
+
+// Interface exported by the server.
+service GrpcMock {
+  rpc BasicReqResp(ClientRequest) returns (ServerResponse) {}
+  rpc ServerStreamResp(ClientRequest) returns (stream ServerResponse) {}
+  rpc ClientStreamResp(stream ClientRequest) returns (ServerResponse) {}
+  // This is just an echo endpoint
+  rpc Bidirectional(stream ClientRequest) returns (stream ServerResponse) {}
+}
+
+message ClientRequest {
+  uint32 num_resp = 1;
+}
+
+message ServerResponse {
+  uint32 resp_idx = 1;
+  // The number of requests the client sent us
+  uint32 num_reqs = 2;
+}
